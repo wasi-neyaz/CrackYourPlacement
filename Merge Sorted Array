@@ -1,0 +1,43 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        //brute force 
+        // put nums2 in nums1 then sort
+        // for(int i =0;i<n;i++){
+        //     nums1[m+i] = nums2[i];
+        // }
+        // sort(nums1.begin(),nums1.end());
+
+        //optimal approach 
+        //Two Pointer
+
+        int i = 0;
+        int j = 0;
+        vector<int>res;
+        while(i<m && j<n){
+            if(nums1[i]<nums2[j]){
+                res.push_back(nums1[i]);
+                i++;
+            }
+            else{
+                res.push_back(nums2[j]);
+                j++;
+            }
+        }
+            //if nums1 is having extra element or more than nums2
+            while(i<m){
+                res.push_back(nums1[i]);
+                i++;
+            }
+
+            //if nums2 is having extra element 
+            while(j<n){
+                res.push_back(nums2[j]);
+                j++;
+            }
+            for(int i = 0;i<res.size();i++){
+                nums1[i] = res[i];
+            }
+        
+    }
+};
